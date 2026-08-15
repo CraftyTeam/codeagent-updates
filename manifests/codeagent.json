@@ -11,9 +11,10 @@
   "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.5/codeagent.zip",
   "published_at": "2026-08-15T13:33:22+03:00",
   "details_url": "https://github.com/CraftyTeam/codeagent-updates/releases/tag/v3.4.5",
-  "sha256": "98e86463e6645e83e313a6f6d48f02387ace5329a30280fe4305efe35f564bc5",
+  "sha256": "4e4e1843ae2e15dde2445630c355bdb55a2c86d74516bfe28ef66c85d23c0843",
   "changelog": [
     "Fix stale WordPress update transient after CodeAgent self-update.",
-    "Prevent equal or older CodeAgent versions from remaining as available updates."
+    "Prevent equal or older CodeAgent versions from remaining as available updates.",
+    "Serve update metadata from the latest GitHub Release asset instead of GitHub Raw to avoid stale manifest caching."
   ]
 }
