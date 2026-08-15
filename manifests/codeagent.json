@@ -3,17 +3,17 @@
   "plugin": "codeagent/codeagent.php",
   "slug": "codeagent",
   "channel": "testing",
-  "version": "3.4.4",
+  "version": "3.4.5",
   "requires": "6.9",
   "tested": "dynamic",
   "requires_php": "8.0",
-  "release_tag": "v3.4.4",
-  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.4/codeagent.zip",
-  "published_at": "2026-08-15T13:29:00+03:00",
-  "details_url": "https://github.com/CraftyTeam/codeagent-updates/releases/tag/v3.4.4",
-  "sha256": "890c7d8e20adbe3830e3e90fdae0d60b1b42cc2d86da3d4aa9cf160f6d300cc8",
+  "release_tag": "v3.4.5",
+  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.5/codeagent.zip",
+  "published_at": "2026-08-15T13:33:22+03:00",
+  "details_url": "https://github.com/CraftyTeam/codeagent-updates/releases/tag/v3.4.5",
+  "sha256": "98e86463e6645e83e313a6f6d48f02387ace5329a30280fe4305efe35f564bc5",
   "changelog": [
-    "Restore native WordPress admin page scrolling in CodeAgent.",
-    "Report compatibility against the currently installed WordPress version dynamically."
+    "Fix stale WordPress update transient after CodeAgent self-update.",
+    "Prevent equal or older CodeAgent versions from remaining as available updates."
   ]
 }
