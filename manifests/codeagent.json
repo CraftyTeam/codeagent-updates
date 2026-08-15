@@ -3,20 +3,28 @@
   "plugin": "codeagent/codeagent.php",
   "slug": "codeagent",
   "channel": "testing",
-  "version": "3.4.14",
+  "version": "3.4.15",
   "requires": "6.9",
   "tested": "dynamic",
   "requires_php": "8.0",
-  "release_tag": "v3.4.14",
-  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.14/codeagent.zip",
-  "published_at": "2026-08-15T15:37:00+03:00",
-  "details_url": "https://github.com/CraftyTeam/codeagent-updates/releases/tag/v3.4.14",
-  "sha256": "39d003004ce7770c08740dc059711ebbd3ade1995df7b2e977f4c3f7fb0fc64b",
+  "release_tag": "v3.4.15",
+  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.15/codeagent.zip",
+  "published_at": "2026-08-15T15:47:32+03:00",
+  "details_url": "https://github.com/CraftyTeam/codeagent-updates/releases/tag/v3.4.15",
+  "sha256": "624803d4e005f764f5c6fa47e81e2d19f43e045f0a32be8384cf7f898d02cc0d",
   "changelog": [
-    "Elimină bannerul duplicat din secțiunea Descriere a ferestrei „Vezi detalii”.",
-    "Păstrează bannerul comercial CodeAgent doar în zona nativă de banner WordPress, fără repetare în conținut."
+    "Redesenează headerul administrativ CodeAgent după noul layout compact de 64px, cu fundal #f1f5f9 și navigare orizontală.",
+    "Afișează tabul activ ca un card alb cu border discret și umbră, păstrând iconurile, statusul dinamic al tool-urilor și comportamentul responsive."
   ],
   "changelog_history": [
+    {
+      "version": "3.4.15",
+      "date": "2026-08-15",
+      "items": [
+        "Redesenează headerul administrativ CodeAgent după noul layout compact de 64px, cu fundal #f1f5f9 și navigare orizontală.",
+        "Afișează tabul activ ca un card alb cu border discret și umbră, păstrând iconurile, statusul dinamic al tool-urilor și comportamentul responsive."
+      ]
+    },
     {
       "version": "3.4.14",
       "date": "2026-08-15",
