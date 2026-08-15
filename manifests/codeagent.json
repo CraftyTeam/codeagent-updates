@@ -3,17 +3,16 @@
   "plugin": "codeagent/codeagent.php",
   "slug": "codeagent",
   "channel": "testing",
-  "version": "3.4.2",
+  "version": "3.4.3",
   "requires": "6.9",
   "tested": "6.9",
   "requires_php": "8.0",
-  "release_tag": "v3.4.2",
-  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.2/codeagent.zip",
-  "published_at": "2026-08-15T09:43:56Z",
-  "details_url": "https://github.com/CraftyTeam/codeagent-updates/releases/tag/v3.4.2",
-  "sha256": "1f95c8109e73285b9eb546682f555ba7cd6b616cecad20aeb33d5dee55069883",
+  "release_tag": "v3.4.3",
+  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.3/codeagent.zip",
+  "published_at": "2026-08-15T10:17:00Z",
+  "details_url": "https://github.com/CraftyTeam/codeagent-updates/releases/tag/v3.4.3",
+  "sha256": "5015dc954985b0494aaad026adc2693c7d4b4204cf7b9e744374c2723a6921ff",
   "changelog": [
-    "GitHub-based WordPress update channel enabled for CodeAgent.",
-    "CodeAgent is no longer protected from plugin updates."
+    "Larger SVG icons in the CodeAgent sidebar navigation."
   ]
 }
