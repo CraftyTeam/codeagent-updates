@@ -3,18 +3,18 @@
   "plugin": "codeagent/codeagent.php",
   "slug": "codeagent",
   "channel": "testing",
-  "version": "3.4.5",
+  "version": "3.4.6",
   "requires": "6.9",
   "tested": "dynamic",
   "requires_php": "8.0",
-  "release_tag": "v3.4.5",
-  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.5/codeagent.zip",
-  "published_at": "2026-08-15T13:33:22+03:00",
-  "details_url": "https://github.com/CraftyTeam/codeagent-updates/releases/tag/v3.4.5",
-  "sha256": "4e4e1843ae2e15dde2445630c355bdb55a2c86d74516bfe28ef66c85d23c0843",
+  "release_tag": "v3.4.6",
+  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.6/codeagent.zip",
+  "published_at": "2026-08-15T13:50:00+03:00",
+  "details_url": "https://github.com/CraftyTeam/codeagent-updates/releases/tag/v3.4.6",
+  "sha256": "380e2a82cce3070250e5700cf5ea0781c007fe05c35eaf8fd5e534e104329352",
   "changelog": [
-    "Fix stale WordPress update transient after CodeAgent self-update.",
-    "Prevent equal or older CodeAgent versions from remaining as available updates.",
-    "Serve update metadata from the latest GitHub Release asset instead of GitHub Raw to avoid stale manifest caching."
+    "Redesign CodeAgent admin navigation with a sticky top header and horizontal tabs.",
+    "Remove the internal sidebar and expand the admin content area.",
+    "Keep all six sections available as responsive horizontal navigation tabs."
   ]
 }
