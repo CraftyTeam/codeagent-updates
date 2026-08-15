@@ -3,20 +3,28 @@
   "plugin": "codeagent/codeagent.php",
   "slug": "codeagent",
   "channel": "testing",
-  "version": "3.4.11",
+  "version": "3.4.12",
   "requires": "6.9",
   "tested": "dynamic",
   "requires_php": "8.0",
-  "release_tag": "v3.4.11",
-  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.11/codeagent.zip",
-  "published_at": "2026-08-15T14:49:00+03:00",
-  "details_url": "https://github.com/CraftyTeam/codeagent-updates/releases/tag/v3.4.11",
-  "sha256": "af7d3a54f58afbef6ae5e365fbc0be1f32dbf00cb9dbb83482fb04f3dc005794",
+  "release_tag": "v3.4.12",
+  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.12/codeagent.zip",
+  "published_at": "2026-08-15T15:27:42+03:00",
+  "details_url": "https://github.com/CraftyTeam/codeagent-updates/releases/tag/v3.4.12",
+  "sha256": "b58ee42af960d98cb4e8282447ef361014418aef6fa0a607951b4847e6fb6aed",
   "changelog": [
-    "Adaugă bannerul comercial CodeAgent în zona dedicată de prezentare din fereastra „Vezi detalii” WordPress.",
-    "Elimină spațiul vizual gol din partea superioară a descrierii pluginului și păstrează textul comercial sub banner."
+    "Înlocuiește bannerul generic din fereastra „Vezi detalii” cu bannerul comercial CodeAgent aprobat.",
+    "Afișează bannerul comercial direct în secțiunea Descriere, înaintea textului de prezentare, pentru a elimina zona vizuală goală."
   ],
   "changelog_history": [
+    {
+      "version": "3.4.12",
+      "date": "2026-08-15",
+      "items": [
+        "Înlocuiește bannerul generic din fereastra „Vezi detalii” cu bannerul comercial CodeAgent aprobat.",
+        "Afișează bannerul comercial direct în secțiunea Descriere, înaintea textului de prezentare, pentru a elimina zona vizuală goală."
+      ]
+    },
     {
       "version": "3.4.11",
       "date": "2026-08-15",
