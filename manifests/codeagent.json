@@ -3,17 +3,85 @@
   "plugin": "codeagent/codeagent.php",
   "slug": "codeagent",
   "channel": "testing",
-  "version": "3.4.9",
+  "version": "3.4.10",
   "requires": "6.9",
   "tested": "dynamic",
   "requires_php": "8.0",
-  "release_tag": "v3.4.9",
-  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.9/codeagent.zip",
-  "published_at": "2026-08-15T14:39:00+03:00",
-  "details_url": "https://github.com/CraftyTeam/codeagent-updates/releases/tag/v3.4.9",
-  "sha256": "844eebd8ffa4e8c63c58f1091777428c52e8ca9cfb7a2deca2184b54f9b06ab8",
+  "release_tag": "v3.4.10",
+  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.10/codeagent.zip",
+  "published_at": "2026-08-15T14:41:00+03:00",
+  "details_url": "https://github.com/CraftyTeam/codeagent-updates/releases/tag/v3.4.10",
+  "sha256": "75218db3c180bff1f8537ce8d4ba77c424319a748c1b9c901068306522b5a452",
   "changelog": [
-    "Înlocuiește descrierea tehnică din detaliile pluginului cu o prezentare comercială în limba română.",
-    "Actualizează descrierea scurtă afișată în lista de pluginuri WordPress."
+    "Afișează istoricul complet al modificărilor în fereastra de detalii WordPress, grupat pe versiuni.",
+    "Păstrează compatibilitatea cu manifestele vechi care conțin doar changelog-ul versiunii curente."
+  ],
+  "changelog_history": [
+    {
+      "version": "3.4.10",
+      "items": [
+        "Afișează istoricul complet al modificărilor în fereastra de detalii WordPress, grupat pe versiuni.",
+        "Păstrează compatibilitatea cu manifestele vechi care conțin doar changelog-ul versiunii curente."
+      ]
+    },
+    {
+      "version": "3.4.9",
+      "items": [
+        "Înlocuiește descrierea tehnică din detaliile pluginului cu o prezentare comercială în limba română.",
+        "Actualizează descrierea scurtă afișată în lista de pluginuri WordPress."
+      ]
+    },
+    {
+      "version": "3.4.8",
+      "items": [
+        "Traducere completă în limba română pentru interfața administrativă CodeAgent.",
+        "Traducere pentru navigare, dashboard, capabilități, skill-uri, memorie, sandbox și setările MCP/Relay.",
+        "Traducere pentru mesajele dinamice AJAX, statusuri și acțiuni din interfață."
+      ]
+    },
+    {
+      "version": "3.4.7",
+      "items": [
+        "Actualizează imediat disponibilitatea unei versiuni noi atunci când WordPress citește transientul de update-uri.",
+        "Elimină așteptarea verificării periodice WordPress înainte ca un release CodeAgent nou să apară în Plugins."
+      ]
+    },
+    {
+      "version": "3.4.6",
+      "items": [
+        "Redesign al navigării CodeAgent cu header sticky și taburi orizontale.",
+        "Elimină sidebar-ul intern și extinde zona de conținut.",
+        "Păstrează toate cele șase secțiuni într-o navigare responsive."
+      ]
+    },
+    {
+      "version": "3.4.5",
+      "items": [
+        "Corectează transientul WordPress rămas învechit după auto-update CodeAgent.",
+        "Împiedică versiunile egale sau mai vechi să rămână afișate ca update disponibil.",
+        "Mută metadata update-urilor pe asset-ul celui mai nou GitHub Release pentru a evita cache-ul GitHub Raw."
+      ]
+    },
+    {
+      "version": "3.4.4",
+      "items": [
+        "Restaurează scroll-ul nativ al paginii de administrare WordPress în CodeAgent.",
+        "Raportează dinamic compatibilitatea cu versiunea WordPress instalată."
+      ]
+    },
+    {
+      "version": "3.4.3",
+      "items": [
+        "Mărește iconurile SVG din navigarea CodeAgent.",
+        "Evită metadata veche servită din cache la verificarea update-urilor."
+      ]
+    },
+    {
+      "version": "3.4.2",
+      "items": [
+        "Activează canalul de update WordPress bazat pe GitHub pentru CodeAgent.",
+        "Permite actualizarea CodeAgent prin mecanismul normal de update WordPress."
+      ]
+    }
   ]
 }
