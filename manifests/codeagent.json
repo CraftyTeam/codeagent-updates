@@ -8,7 +8,7 @@
   "tested": "6.9",
   "requires_php": "8.0",
   "release_tag": "v3.4.2",
-  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.2/codeagent-3.4.2.zip",
+  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.2/codeagent.zip",
   "published_at": "2026-08-15T09:43:56Z",
   "details_url": "https://github.com/CraftyTeam/codeagent-updates/releases/tag/v3.4.2",
   "sha256": "0cb59b6fb0beb0513b1904bd2638b62cc77b049c8f2512b96743b4686ac599e5",
