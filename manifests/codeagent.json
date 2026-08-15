@@ -3,20 +3,28 @@
   "plugin": "codeagent/codeagent.php",
   "slug": "codeagent",
   "channel": "testing",
-  "version": "3.4.13",
+  "version": "3.4.14",
   "requires": "6.9",
   "tested": "dynamic",
   "requires_php": "8.0",
-  "release_tag": "v3.4.13",
-  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.13/codeagent.zip",
-  "published_at": "2026-08-15T15:34:01+03:00",
-  "details_url": "https://github.com/CraftyTeam/codeagent-updates/releases/tag/v3.4.13",
-  "sha256": "eb8d62cc0e6248248808598639e109796a23aba0803ac06a6bf71fadb97c0503",
+  "release_tag": "v3.4.14",
+  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.14/codeagent.zip",
+  "published_at": "2026-08-15T15:37:00+03:00",
+  "details_url": "https://github.com/CraftyTeam/codeagent-updates/releases/tag/v3.4.14",
+  "sha256": "39d003004ce7770c08740dc059711ebbd3ade1995df7b2e977f4c3f7fb0fc64b",
   "changelog": [
-    "Corectează contrastul etichetelor de tip eyebrow din interfața administrativă, inclusiv „Context persistent”.",
-    "Elimină fundalul întunecat moștenit de aceste etichete în tema light, păstrând textul clar și consistent."
+    "Elimină bannerul duplicat din secțiunea Descriere a ferestrei „Vezi detalii”.",
+    "Păstrează bannerul comercial CodeAgent doar în zona nativă de banner WordPress, fără repetare în conținut."
   ],
   "changelog_history": [
+    {
+      "version": "3.4.14",
+      "date": "2026-08-15",
+      "items": [
+        "Elimină bannerul duplicat din secțiunea Descriere a ferestrei „Vezi detalii”.",
+        "Păstrează bannerul comercial CodeAgent doar în zona nativă de banner WordPress, fără repetare în conținut."
+      ]
+    },
     {
       "version": "3.4.13",
       "date": "2026-08-15",
