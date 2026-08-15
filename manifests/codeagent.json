@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "plugin": "codeagent",
+  "channel": "testing",
+  "version": null,
+  "requires": null,
+  "tested": null,
+  "requires_php": null,
+  "release_tag": null,
+  "package_asset": null,
+  "published_at": null,
+  "changelog": []
+}
