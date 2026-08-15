@@ -3,17 +3,18 @@
   "plugin": "codeagent/codeagent.php",
   "slug": "codeagent",
   "channel": "testing",
-  "version": "3.4.7",
+  "version": "3.4.8",
   "requires": "6.9",
   "tested": "dynamic",
   "requires_php": "8.0",
-  "release_tag": "v3.4.7",
-  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.7/codeagent.zip",
-  "published_at": "2026-08-15T14:26:00+03:00",
-  "details_url": "https://github.com/CraftyTeam/codeagent-updates/releases/tag/v3.4.7",
-  "sha256": "8985b99942c0ccea9a2c5025b22ac2437e2795d705d521934ecd961475fe357d",
+  "release_tag": "v3.4.8",
+  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.8/codeagent.zip",
+  "published_at": "2026-08-15T14:34:00+03:00",
+  "details_url": "https://github.com/CraftyTeam/codeagent-updates/releases/tag/v3.4.8",
+  "sha256": "a21d14558fbfab1203fd9f44bda9abf7bc9d17a7019db86302ada50e83d66035",
   "changelog": [
-    "Make CodeAgent update availability reconcile immediately when WordPress reads the plugin update transient.",
-    "Avoid waiting for the normal WordPress periodic update refresh before a newly published CodeAgent version appears."
+    "Traducere completă în limba română pentru interfața administrativă CodeAgent.",
+    "Traducere pentru navigare, dashboard, capabilități, skill-uri, memorie, sandbox și setările MCP/Relay.",
+    "Traducere pentru mesajele dinamice AJAX, statusuri și acțiuni din interfață."
   ]
 }
