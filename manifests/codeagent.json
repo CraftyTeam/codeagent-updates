@@ -3,20 +3,28 @@
   "plugin": "codeagent/codeagent.php",
   "slug": "codeagent",
   "channel": "testing",
-  "version": "3.4.17",
+  "version": "3.4.18",
   "requires": "6.9",
   "tested": "dynamic",
   "requires_php": "8.0",
-  "release_tag": "v3.4.17",
-  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.17/codeagent.zip",
-  "published_at": "2026-08-15T15:56:00+03:00",
-  "details_url": "https://codeagent.ro",
-  "sha256": "189af9eb8bb3947691e1cc73264f899eb7371843e7d40ea02a2fea191267aacf",
+  "release_tag": "v3.4.18",
+  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.18/codeagent.zip",
+  "published_at": "2026-08-15T16:06:56+03:00",
+  "details_url": "https://github.com/CraftyTeam/codeagent-updates/releases/tag/v3.4.18",
+  "sha256": "3e55295979cc95005bcc676fc95b22297d4996b93f7d86b31ee484c2680a54ec",
   "changelog": [
-    "Schimbă linkul „Prima pagină a modulului” din fereastra de detalii WordPress către site-ul oficial CodeAgent: https://codeagent.ro.",
-    "Păstrează infrastructura de update separată pe repository-ul dedicat codeagent-updates."
+    "Înlocuiește bannerul comercial raster comprimat cu o versiune SVG vectorială, clară pe ecrane Retina și la orice rezoluție.",
+    "Elimină assetul JPG blurat și păstrează aceeași zonă nativă de banner din fereastra de detalii WordPress."
   ],
   "changelog_history": [
+    {
+      "version": "3.4.18",
+      "date": "2026-08-15",
+      "items": [
+        "Înlocuiește bannerul comercial raster comprimat cu o versiune SVG vectorială, clară pe ecrane Retina și la orice rezoluție.",
+        "Elimină assetul JPG blurat și păstrează aceeași zonă nativă de banner din fereastra de detalii WordPress."
+      ]
+    },
     {
       "version": "3.4.17",
       "date": "2026-08-15",
