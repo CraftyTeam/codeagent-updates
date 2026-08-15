@@ -3,17 +3,17 @@
   "plugin": "codeagent/codeagent.php",
   "slug": "codeagent",
   "channel": "testing",
-  "version": "3.4.3",
+  "version": "3.4.4",
   "requires": "6.9",
-  "tested": "6.9",
+  "tested": "dynamic",
   "requires_php": "8.0",
-  "release_tag": "v3.4.3",
-  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.3/codeagent.zip",
-  "published_at": "2026-08-15T10:17:00Z",
-  "details_url": "https://github.com/CraftyTeam/codeagent-updates/releases/tag/v3.4.3",
-  "sha256": "1db6d09205619b7b67dc35c01b66b6ae264e4f0bde58f621c691a70f347b8b01",
+  "release_tag": "v3.4.4",
+  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.4/codeagent.zip",
+  "published_at": "2026-08-15T13:29:00+03:00",
+  "details_url": "https://github.com/CraftyTeam/codeagent-updates/releases/tag/v3.4.4",
+  "sha256": "890c7d8e20adbe3830e3e90fdae0d60b1b42cc2d86da3d4aa9cf160f6d300cc8",
   "changelog": [
-    "Larger SVG icons in the CodeAgent sidebar navigation.",
-    "Update manifest requests now bypass stale GitHub Raw cache when metadata is refreshed."
+    "Restore native WordPress admin page scrolling in CodeAgent.",
+    "Report compatibility against the currently installed WordPress version dynamically."
   ]
 }
