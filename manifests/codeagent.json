@@ -3,18 +3,17 @@
   "plugin": "codeagent/codeagent.php",
   "slug": "codeagent",
   "channel": "testing",
-  "version": "3.4.8",
+  "version": "3.4.9",
   "requires": "6.9",
   "tested": "dynamic",
   "requires_php": "8.0",
-  "release_tag": "v3.4.8",
-  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.8/codeagent.zip",
-  "published_at": "2026-08-15T14:34:00+03:00",
-  "details_url": "https://github.com/CraftyTeam/codeagent-updates/releases/tag/v3.4.8",
-  "sha256": "a21d14558fbfab1203fd9f44bda9abf7bc9d17a7019db86302ada50e83d66035",
+  "release_tag": "v3.4.9",
+  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.9/codeagent.zip",
+  "published_at": "2026-08-15T14:39:00+03:00",
+  "details_url": "https://github.com/CraftyTeam/codeagent-updates/releases/tag/v3.4.9",
+  "sha256": "844eebd8ffa4e8c63c58f1091777428c52e8ca9cfb7a2deca2184b54f9b06ab8",
   "changelog": [
-    "Traducere completă în limba română pentru interfața administrativă CodeAgent.",
-    "Traducere pentru navigare, dashboard, capabilități, skill-uri, memorie, sandbox și setările MCP/Relay.",
-    "Traducere pentru mesajele dinamice AJAX, statusuri și acțiuni din interfață."
+    "Înlocuiește descrierea tehnică din detaliile pluginului cu o prezentare comercială în limba română.",
+    "Actualizează descrierea scurtă afișată în lista de pluginuri WordPress."
   ]
 }
