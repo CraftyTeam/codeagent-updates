@@ -3,20 +3,28 @@
   "plugin": "codeagent/codeagent.php",
   "slug": "codeagent",
   "channel": "testing",
-  "version": "3.4.16",
+  "version": "3.4.17",
   "requires": "6.9",
   "tested": "dynamic",
   "requires_php": "8.0",
-  "release_tag": "v3.4.16",
-  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.16/codeagent.zip",
-  "published_at": "2026-08-15T15:53:01+03:00",
-  "details_url": "https://github.com/CraftyTeam/codeagent-updates/releases/tag/v3.4.16",
-  "sha256": "869bb702021f3bfdc270144d48614a46db5d4a4ebb2d8bc2cd110183d7c5db7e",
+  "release_tag": "v3.4.17",
+  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.17/codeagent.zip",
+  "published_at": "2026-08-15T15:56:00+03:00",
+  "details_url": "https://codeagent.ro",
+  "sha256": "189af9eb8bb3947691e1cc73264f899eb7371843e7d40ea02a2fea191267aacf",
   "changelog": [
-    "Elimină spațiul gol din tabul Descriere al ferestrei „Vezi detalii”.",
-    "Corectează conflictul cu regula WordPress .plugin-install-php h2 { clear: both; } doar pentru modalul CodeAgent, fără modificări în WordPress core."
+    "Schimbă linkul „Prima pagină a modulului” din fereastra de detalii WordPress către site-ul oficial CodeAgent: https://codeagent.ro.",
+    "Păstrează infrastructura de update separată pe repository-ul dedicat codeagent-updates."
   ],
   "changelog_history": [
+    {
+      "version": "3.4.17",
+      "date": "2026-08-15",
+      "items": [
+        "Schimbă linkul „Prima pagină a modulului” din fereastra de detalii WordPress către site-ul oficial CodeAgent: https://codeagent.ro.",
+        "Păstrează infrastructura de update separată pe repository-ul dedicat codeagent-updates."
+      ]
+    },
     {
       "version": "3.4.16",
       "date": "2026-08-15",
