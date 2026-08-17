@@ -3,20 +3,30 @@
   "plugin": "codeagent/codeagent.php",
   "slug": "codeagent",
   "channel": "testing",
-  "version": "3.4.18",
+  "version": "3.4.19",
   "requires": "6.9",
   "tested": "dynamic",
   "requires_php": "8.0",
-  "release_tag": "v3.4.18",
-  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.18/codeagent.zip",
-  "published_at": "2026-08-15T16:06:56+03:00",
-  "details_url": "https://github.com/CraftyTeam/codeagent-updates/releases/tag/v3.4.18",
-  "sha256": "3e55295979cc95005bcc676fc95b22297d4996b93f7d86b31ee484c2680a54ec",
+  "release_tag": "v3.4.19",
+  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.19/codeagent.zip",
+  "published_at": "2026-08-17T12:57:04+03:00",
+  "details_url": "https://github.com/CraftyTeam/codeagent-updates/releases/tag/v3.4.19",
+  "sha256": "ae0207712b829c528d03a42fcf3fde95d4fc8a26637a862b0350270e5aba1061",
   "changelog": [
-    "Înlocuiește bannerul comercial raster comprimat cu o versiune SVG vectorială, clară pe ecrane Retina și la orice rezoluție.",
-    "Elimină assetul JPG blurat și păstrează aceeași zonă nativă de banner din fereastra de detalii WordPress."
+    "Elimină warning-ul PHP produs de coliziunea constantei CODEAGENT_EMERGENCY_RUNTIME_VERSION între MU emergency runtime și bootstrap-ul pluginului.",
+    "Separă versiunea runtime-ului bundled de versiunea runtime-ului MU activ prin CODEAGENT_EMERGENCY_BUNDLED_RUNTIME_VERSION, astfel încât upgrade-urile viitoare să nu poată fi contaminate de o versiune MU veche.",
+    "Adaugă validare de release pentru izolarea constantelor și verifică sintaxa PHP a întregului pachet înainte de publicare."
   ],
   "changelog_history": [
+    {
+      "version": "3.4.19",
+      "date": "2026-08-17",
+      "items": [
+        "Elimină warning-ul PHP produs de coliziunea constantei CODEAGENT_EMERGENCY_RUNTIME_VERSION între MU emergency runtime și bootstrap-ul pluginului.",
+        "Separă versiunea runtime-ului bundled de versiunea runtime-ului MU activ prin CODEAGENT_EMERGENCY_BUNDLED_RUNTIME_VERSION, astfel încât upgrade-urile viitoare să nu poată fi contaminate de o versiune MU veche.",
+        "Adaugă validare de release pentru izolarea constantelor și verifică sintaxa PHP a întregului pachet înainte de publicare."
+      ]
+    },
     {
       "version": "3.4.18",
       "date": "2026-08-15",
