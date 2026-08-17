@@ -1,4 +1,4 @@
-name: Publish CodeAgent 3.4.19
+name: Promote CodeAgent 3.4.19 manifest
 
 on:
   push:
@@ -11,159 +11,39 @@ permissions:
   contents: write
 
 jobs:
-  publish:
+  promote:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
-          coverage: none
-
-      - name: Download 3.4.18 baseline
+      - name: Download and validate release manifest
         env:
           GH_TOKEN: ${{ github.token }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p work
-          gh release download v3.4.18 --repo "$GITHUB_REPOSITORY" --pattern codeagent.zip --dir work
-          unzip -q work/codeagent.zip -d work/base
-          test -f work/base/codeagent/codeagent.php
-          test -f work/base/codeagent/includes/emergency/bootstrap.php
-          test -f work/base/codeagent/includes/emergency/mu-runtime-template.php
-          grep -Fq "Version: 3.4.18" work/base/codeagent/codeagent.php
-          grep -Fq "define('CODEAGENT_VERSION', '3.4.18');" work/base/codeagent/codeagent.php
-
-      - name: Apply emergency runtime version isolation
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 - <<'PY'
-          from pathlib import Path
-
-          root = Path('work/base/codeagent')
-          main = root / 'codeagent.php'
-          bootstrap = root / 'includes/emergency/bootstrap.php'
-
-          text = main.read_text()
-          text = text.replace('Version: 3.4.18', 'Version: 3.4.19', 1)
-          text = text.replace("define('CODEAGENT_VERSION', '3.4.18');", "define('CODEAGENT_VERSION', '3.4.19');", 1)
-          main.write_text(text)
-
-          text = bootstrap.read_text()
-          old = 'CODEAGENT_EMERGENCY_RUNTIME_VERSION'
-          new = 'CODEAGENT_EMERGENCY_BUNDLED_RUNTIME_VERSION'
-          if text.count(old) != 4:
-              raise SystemExit(f'Unexpected installer runtime constant occurrence count: {text.count(old)}')
-          text = text.replace(old, new)
-          bootstrap.write_text(text)
-          PY
-
-      - name: Validate patched plugin
-        shell: bash
-        run: |
-          set -euo pipefail
-          plugin='work/base/codeagent'
-          bootstrap="$plugin/includes/emergency/bootstrap.php"
-          runtime="$plugin/includes/emergency/mu-runtime-template.php"
-
-          grep -Fq "Version: 3.4.19" "$plugin/codeagent.php"
-          grep -Fq "define('CODEAGENT_VERSION', '3.4.19');" "$plugin/codeagent.php"
-          grep -Fq "define('CODEAGENT_EMERGENCY_BUNDLED_RUNTIME_VERSION', '1.0.0');" "$bootstrap"
-          ! grep -Fq "CODEAGENT_EMERGENCY_RUNTIME_VERSION" "$bootstrap"
-          grep -Fq "define('CODEAGENT_EMERGENCY_RUNTIME_VERSION', '__CODEAGENT_EMERGENCY_VERSION__');" "$runtime"
-          grep -Fq "'__CODEAGENT_EMERGENCY_VERSION__' => addslashes(CODEAGENT_EMERGENCY_BUNDLED_RUNTIME_VERSION)" "$bootstrap"
-          grep -Fq "CODEAGENT_EMERGENCY_BUNDLED_RUNTIME_VERSION," "$bootstrap"
-          grep -Fq "'version' => CODEAGENT_EMERGENCY_BUNDLED_RUNTIME_VERSION" "$bootstrap"
-
-          find "$plugin" -type f -name '*.php' -print0 | xargs -0 -n1 php -l >/dev/null
-
-          php -d display_errors=1 -d error_reporting=32767 -r '
-          define("ABSPATH", __DIR__);
-          define("CODEAGENT_EMERGENCY_RUNTIME_VERSION", "0.9.0");
-          define("CODEAGENT_DIR", getcwd() . "/work/base/codeagent");
-          function register_activation_hook(...$args) {}
-          function add_action(...$args) {}
-          set_error_handler(static function ($severity, $message, $file, $line) {
-              throw new ErrorException($message, 0, $severity, $file, $line);
-          });
-          require getcwd() . "/work/base/codeagent/includes/emergency/bootstrap.php";
-          restore_error_handler();
-          if (CODEAGENT_EMERGENCY_RUNTIME_VERSION !== "0.9.0") {
-              throw new RuntimeException("Active MU runtime version was overwritten.");
-          }
-          if (CODEAGENT_EMERGENCY_BUNDLED_RUNTIME_VERSION !== "1.0.0") {
-              throw new RuntimeException("Bundled runtime version is incorrect.");
-          }
-          echo "Emergency constant isolation passed.\n";
-          '
-
-      - name: Build release artifacts
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p release
-          (
-            cd work/base
-            zip -qr ../../release/codeagent.zip codeagent
-          )
-          sha="$(sha256sum release/codeagent.zip | awk '{print $1}')"
-          export RELEASE_SHA="$sha"
+          gh release download v3.4.19 --repo "$GITHUB_REPOSITORY" --pattern codeagent.json --dir release
           python3 - <<'PY'
           import json
-          import os
-          from datetime import datetime
-          from zoneinfo import ZoneInfo
           from pathlib import Path
 
-          manifest_path = Path('manifests/codeagent.json')
-          data = json.loads(manifest_path.read_text())
-          version = '3.4.19'
-          items = [
-              'Elimină warning-ul PHP produs de coliziunea constantei CODEAGENT_EMERGENCY_RUNTIME_VERSION între MU emergency runtime și bootstrap-ul pluginului.',
-              'Separă versiunea runtime-ului bundled de versiunea runtime-ului MU activ prin CODEAGENT_EMERGENCY_BUNDLED_RUNTIME_VERSION, astfel încât upgrade-urile viitoare să nu poată fi contaminate de o versiune MU veche.',
-              'Adaugă validare de release pentru izolarea constantelor și verifică sintaxa PHP a întregului pachet înainte de publicare.'
-          ]
-          now = datetime.now(ZoneInfo('Europe/Bucharest'))
-          data['version'] = version
-          data['release_tag'] = f'v{version}'
-          data['package'] = f'https://github.com/CraftyTeam/codeagent-updates/releases/download/v{version}/codeagent.zip'
-          data['published_at'] = now.isoformat(timespec='seconds')
-          data['details_url'] = f'https://github.com/CraftyTeam/codeagent-updates/releases/tag/v{version}'
-          data['sha256'] = os.environ['RELEASE_SHA']
-          data['changelog'] = items
-          history = data.get('changelog_history')
-          if not isinstance(history, list):
-              history = []
-          history = [entry for entry in history if entry.get('version') != version]
-          history.insert(0, {
-              'version': version,
-              'date': now.date().isoformat(),
-              'items': items,
-          })
-          data['changelog_history'] = history
-          Path('release/codeagent.json').write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
+          data = json.loads(Path('release/codeagent.json').read_text())
+          assert data['version'] == '3.4.19'
+          assert data['release_tag'] == 'v3.4.19'
+          assert data['package'] == 'https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.19/codeagent.zip'
+          assert data['sha256'] == 'ae0207712b829c528d03a42fcf3fde95d4fc8a26637a862b0350270e5aba1061'
+          assert data['changelog_history'][0]['version'] == '3.4.19'
           PY
+          cp release/codeagent.json manifests/codeagent.json
 
-          php -r '$z=new ZipArchive(); if($z->open("release/codeagent.zip")!==true){exit(1);} $s=$z->getFromName("codeagent/codeagent.php"); $z->close(); if(!is_string($s)||strpos($s,"Version: 3.4.19")===false||strpos($s,"CODEAGENT_VERSION\x27, \x273.4.19")===false){exit(2);} echo "ZIP version verified.\n";'
-          sha256sum release/codeagent.zip
-          cat release/codeagent.json
-
-      - name: Publish v3.4.19
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Promote manifest to main
         shell: bash
         run: |
           set -euo pipefail
-          if gh release view v3.4.19 --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
-            echo 'Release v3.4.19 already exists; refusing to overwrite.' >&2
-            exit 1
-          fi
-          gh release create v3.4.19 \
-            release/codeagent.zip \
-            release/codeagent.json \
-            --repo "$GITHUB_REPOSITORY" \
-            --title 'CodeAgent 3.4.19' \
-            --notes 'Corectează izolarea versiunii emergency runtime și elimină warning-ul de constantă redefinită fără a dezactiva MU recovery runtime.'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add manifests/codeagent.json
+          git diff --cached --exit-code && { echo 'Manifest already promoted.'; exit 0; }
+          git commit -m 'Release CodeAgent 3.4.19 manifest'
+          git push origin HEAD:main
