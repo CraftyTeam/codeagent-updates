@@ -1,49 +1,13 @@
-name: Promote CodeAgent 3.4.19 manifest
+name: Retired CodeAgent 3.4.19 publisher
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - '.github/workflows/publish-3.4.19.yml'
+  workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  promote:
+  retired:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Download and validate release manifest
-        env:
-          GH_TOKEN: ${{ github.token }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p release
-          gh release download v3.4.19 --repo "$GITHUB_REPOSITORY" --pattern codeagent.json --dir release
-          python3 - <<'PY'
-          import json
-          from pathlib import Path
-
-          data = json.loads(Path('release/codeagent.json').read_text())
-          assert data['version'] == '3.4.19'
-          assert data['release_tag'] == 'v3.4.19'
-          assert data['package'] == 'https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.19/codeagent.zip'
-          assert data['sha256'] == 'ae0207712b829c528d03a42fcf3fde95d4fc8a26637a862b0350270e5aba1061'
-          assert data['changelog_history'][0]['version'] == '3.4.19'
-          PY
-          cp release/codeagent.json manifests/codeagent.json
-
-      - name: Promote manifest to main
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add manifests/codeagent.json
-          git diff --cached --exit-code && { echo 'Manifest already promoted.'; exit 0; }
-          git commit -m 'Release CodeAgent 3.4.19 manifest'
-          git push origin HEAD:main
+      - run: echo 'This one-shot release workflow is retired.'
