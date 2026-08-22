@@ -3,158 +3,58 @@
   "plugin": "codeagent/codeagent.php",
   "slug": "codeagent",
   "channel": "testing",
-  "version": "3.4.19",
   "requires": "6.9",
   "tested": "dynamic",
   "requires_php": "8.0",
-  "release_tag": "v3.4.19",
-  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.19/codeagent.zip",
-  "published_at": "2026-08-17T12:57:04+03:00",
-  "details_url": "https://github.com/CraftyTeam/codeagent-updates/releases/tag/v3.4.19",
-  "sha256": "ae0207712b829c528d03a42fcf3fde95d4fc8a26637a862b0350270e5aba1061",
+  "version": "3.4.62",
+  "release_tag": "v3.4.62",
+  "package": "https://github.com/CraftyTeam/codeagent-updates/releases/download/v3.4.62/codeagent.zip",
+  "published_at": "2026-08-23T02:45:14+03:00",
+  "details_url": "https://github.com/CraftyTeam/codeagent-updates/releases/tag/v3.4.62",
+  "sha256": "fa8d042730f21c9557d6269363bd5d879460224f65cbd7682ef014ceda23386b",
   "changelog": [
-    "Elimină warning-ul PHP produs de coliziunea constantei CODEAGENT_EMERGENCY_RUNTIME_VERSION între MU emergency runtime și bootstrap-ul pluginului.",
-    "Separă versiunea runtime-ului bundled de versiunea runtime-ului MU activ prin CODEAGENT_EMERGENCY_BUNDLED_RUNTIME_VERSION, astfel încât upgrade-urile viitoare să nu poată fi contaminate de o versiune MU veche.",
-    "Adaugă validare de release pentru izolarea constantelor și verifică sintaxa PHP a întregului pachet înainte de publicare."
+    "Blochează crearea automată a paginilor cu sufixe -2/-3 atunci când numele sau slug-ul exact cerut este deja ocupat.",
+    "Tratează numele unei pagini ca identitate exactă chiar dacă agentul omite slug-ul: slug-ul este derivat din titlu și verificat înainte de creare.",
+    "Returnează collision_targets cu ID, status și URL pentru ținta care ocupă slug-ul, astfel încât agentul să poată reutiliza corect pagina intenționată fără duplicate.",
+    "Permite un slug numeric de tip -2 numai când utilizatorul a cerut explicit acel slug exact, nu ca fallback automat după o coliziune."
   ],
   "changelog_history": [
     {
-      "version": "3.4.19",
-      "date": "2026-08-17",
+      "version": "3.4.62",
+      "date": "2026-08-23",
       "items": [
-        "Elimină warning-ul PHP produs de coliziunea constantei CODEAGENT_EMERGENCY_RUNTIME_VERSION între MU emergency runtime și bootstrap-ul pluginului.",
-        "Separă versiunea runtime-ului bundled de versiunea runtime-ului MU activ prin CODEAGENT_EMERGENCY_BUNDLED_RUNTIME_VERSION, astfel încât upgrade-urile viitoare să nu poată fi contaminate de o versiune MU veche.",
-        "Adaugă validare de release pentru izolarea constantelor și verifică sintaxa PHP a întregului pachet înainte de publicare."
+        "Blochează crearea automată a paginilor cu sufixe -2/-3 atunci când numele sau slug-ul exact cerut este deja ocupat.",
+        "Tratează numele unei pagini ca identitate exactă chiar dacă agentul omite slug-ul: slug-ul este derivat din titlu și verificat înainte de creare.",
+        "Returnează collision_targets cu ID, status și URL pentru ținta care ocupă slug-ul, astfel încât agentul să poată reutiliza corect pagina intenționată fără duplicate.",
+        "Permite un slug numeric de tip -2 numai când utilizatorul a cerut explicit acel slug exact, nu ca fallback automat după o coliziune."
       ]
     },
     {
-      "version": "3.4.18",
-      "date": "2026-08-15",
+      "version": "3.4.61",
+      "date": "2026-08-21",
       "items": [
-        "Înlocuiește bannerul comercial raster comprimat cu o versiune SVG vectorială, clară pe ecrane Retina și la orice rezoluție.",
-        "Elimină assetul JPG blurat și păstrează aceeași zonă nativă de banner din fereastra de detalii WordPress."
+        "Signed request-scoped guest frontend preview.",
+        "Explicit guest/user identity mode in preview signature and response evidence.",
+        "Fail-closed exact-target and exact-persona verification.",
+        "Generic audience/view matrix support."
       ]
     },
     {
-      "version": "3.4.17",
-      "date": "2026-08-15",
+      "version": "3.4.60",
+      "date": "2026-08-21",
       "items": [
-        "Schimbă linkul „Prima pagină a modulului” din fereastra de detalii WordPress către site-ul oficial CodeAgent: https://codeagent.ro.",
-        "Păstrează infrastructura de update separată pe repository-ul dedicat codeagent-updates."
+        "Exact WordPress-user persona frontend QA.",
+        "Separate connector authority and effective preview user.",
+        "Persona identity completion gate and real permalink preview routing."
       ]
     },
     {
-      "version": "3.4.16",
-      "date": "2026-08-15",
+      "version": "3.4.59",
+      "date": "2026-08-21",
       "items": [
-        "Elimină spațiul gol din tabul Descriere al ferestrei „Vezi detalii”.",
-        "Corectează conflictul cu regula WordPress .plugin-install-php h2 { clear: both; } doar pentru modalul CodeAgent, fără modificări în WordPress core."
-      ]
-    },
-    {
-      "version": "3.4.15",
-      "date": "2026-08-15",
-      "items": [
-        "Redesenează headerul administrativ CodeAgent după noul layout compact de 64px, cu fundal #f1f5f9 și navigare orizontală.",
-        "Afișează tabul activ ca un card alb cu border discret și umbră, păstrând iconurile, statusul dinamic al tool-urilor și comportamentul responsive."
-      ]
-    },
-    {
-      "version": "3.4.14",
-      "date": "2026-08-15",
-      "items": [
-        "Elimină bannerul duplicat din secțiunea Descriere a ferestrei „Vezi detalii”.",
-        "Păstrează bannerul comercial CodeAgent doar în zona nativă de banner WordPress, fără repetare în conținut."
-      ]
-    },
-    {
-      "version": "3.4.13",
-      "date": "2026-08-15",
-      "items": [
-        "Corectează contrastul etichetelor de tip eyebrow din interfața administrativă, inclusiv „Context persistent”.",
-        "Elimină fundalul întunecat moștenit de aceste etichete în tema light, păstrând textul clar și consistent."
-      ]
-    },
-    {
-      "version": "3.4.12",
-      "date": "2026-08-15",
-      "items": [
-        "Înlocuiește bannerul generic din fereastra „Vezi detalii” cu bannerul comercial CodeAgent aprobat.",
-        "Afișează bannerul comercial direct în secțiunea Descriere, înaintea textului de prezentare, pentru a elimina zona vizuală goală."
-      ]
-    },
-    {
-      "version": "3.4.11",
-      "date": "2026-08-15",
-      "items": [
-        "Adaugă bannerul comercial CodeAgent în zona dedicată de prezentare din fereastra „Vezi detalii” WordPress.",
-        "Elimină spațiul vizual gol din partea superioară a descrierii pluginului și păstrează textul comercial sub banner."
-      ]
-    },
-    {
-      "version": "3.4.10",
-      "items": [
-        "Afișează istoricul complet al modificărilor în fereastra de detalii WordPress, grupat pe versiuni.",
-        "Păstrează compatibilitatea cu manifestele vechi care conțin doar changelog-ul versiunii curente."
-      ]
-    },
-    {
-      "version": "3.4.9",
-      "items": [
-        "Înlocuiește descrierea tehnică din detaliile pluginului cu o prezentare comercială în limba română.",
-        "Actualizează descrierea scurtă afișată în lista de pluginuri WordPress."
-      ]
-    },
-    {
-      "version": "3.4.8",
-      "items": [
-        "Traducere completă în limba română pentru interfața administrativă CodeAgent.",
-        "Traducere pentru navigare, dashboard, capabilități, skill-uri, memorie, sandbox și setările MCP/Relay.",
-        "Traducere pentru mesajele dinamice AJAX, statusuri și acțiuni din interfață."
-      ]
-    },
-    {
-      "version": "3.4.7",
-      "items": [
-        "Actualizează imediat disponibilitatea unei versiuni noi atunci când WordPress citește transientul de update-uri.",
-        "Elimină așteptarea verificării periodice WordPress înainte ca un release CodeAgent nou să apară în Plugins."
-      ]
-    },
-    {
-      "version": "3.4.6",
-      "items": [
-        "Redesign al navigării CodeAgent cu header sticky și taburi orizontale.",
-        "Elimină sidebar-ul intern și extinde zona de conținut.",
-        "Păstrează toate cele șase secțiuni într-o navigare responsive."
-      ]
-    },
-    {
-      "version": "3.4.5",
-      "items": [
-        "Corectează transientul WordPress rămas învechit după auto-update CodeAgent.",
-        "Împiedică versiunile egale sau mai vechi să rămână afișate ca update disponibil.",
-        "Mută metadata update-urilor pe asset-ul celui mai nou GitHub Release pentru a evita cache-ul GitHub Raw."
-      ]
-    },
-    {
-      "version": "3.4.4",
-      "items": [
-        "Restaurează scroll-ul nativ al paginii de administrare WordPress în CodeAgent.",
-        "Raportează dinamic compatibilitatea cu versiunea WordPress instalată."
-      ]
-    },
-    {
-      "version": "3.4.3",
-      "items": [
-        "Mărește iconurile SVG din navigarea CodeAgent.",
-        "Evită metadata veche servită din cache la verificarea update-urilor."
-      ]
-    },
-    {
-      "version": "3.4.2",
-      "items": [
-        "Activează canalul de update WordPress bazat pe GitHub pentru CodeAgent.",
-        "Permite actualizarea CodeAgent prin mecanismul normal de update WordPress."
+        "Mandatory fresh expected_sha256 on source patch/delete.",
+        "Forced divergent source snapshot restore disabled in normal MCP execution.",
+        "Optimistic-concurrency recovery safety."
       ]
     }
   ]
