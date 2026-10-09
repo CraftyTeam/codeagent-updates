@@ -1,0 +1,39 @@
+name: Publish CodeAgent WordPress 4.0.50
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/publish-codeagent-4050.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publish:
+    if: github.repository == 'CraftyTeam/codeagent-updates'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify official signed distribution
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL --retry 3 https://code.codeagent.ro/codeagent.zip -o codeagent.zip
+          curl -fsSL --retry 3 https://code.codeagent.ro/codeagent.json -o codeagent.json
+          curl -fsSL --retry 3 https://code.codeagent.ro/codeagent.sig -o codeagent.sig
+          echo '06757af45c22e6e9d32f04df4bbebf3a3d5d0330ed44bf4dfa5f72ab98fffe67  codeagent.zip' | sha256sum --check -
+          jq -e --arg sha '06757af45c22e6e9d32f04df4bbebf3a3d5d0330ed44bf4dfa5f72ab98fffe67' '.plugin == "codeagent/codeagent.php" and .version == "4.0.50" and .channel == "stable" and .sha256 == $sha and .package == "https://code.codeagent.ro/codeagent.zip"' codeagent.json
+          unzip -p codeagent.zip codeagent/includes/updates/codeagent-update-public.pem > codeagent-update-public.pem
+          base64 -d codeagent.sig > codeagent.sig.raw
+          openssl dgst -sha256 -verify codeagent-update-public.pem -signature codeagent.sig.raw codeagent.json
+          unzip -p codeagent.zip codeagent/codeagent.php | grep -Fx 'Version: 4.0.50'
+      - name: Create GitHub release consumed by installed WP clients
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view v4.0.50 --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo 'v4.0.50 exists: refusing to overwrite an existing release'
+            exit 1
+          fi
+          gh release create v4.0.50 codeagent.zip codeagent.json codeagent.sig --repo "$GITHUB_REPOSITORY" --title 'CodeAgent WordPress 4.0.50' --notes 'Accurate runtime capability inventory and missing-handler recovery. Includes authenticated browser workflow for Premium WordPress plugin installations. Signed manifest and checksum verified against official CodeAgent distribution.'
+          gh release view v4.0.50 --repo "$GITHUB_REPOSITORY" --json tagName,assets,isDraft,isPrerelease --jq '{tag:.tagName,draft:.isDraft,prerelease:.isPrerelease,assets:[.assets[].name]}'
