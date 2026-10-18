@@ -81,3 +81,4 @@ jobs:
             jq -e --arg name "$file" --arg digest "$expected"               '[.assets[] | select(.name == $name and .digest == $digest and .state == "uploaded")] | length == 1' latest.json >/dev/null               || { echo "::error::GitHub latest v$version has invalid $file"; exit 1; }
           done
           echo "Legacy GitHub latest v$version is fully synchronized with the official signed VPS release."
+# Synced release: v4.0.117
