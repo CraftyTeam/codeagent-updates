@@ -1,0 +1,83 @@
+name: Mirror signed CodeAgent releases to legacy GitHub updater
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/mirror-codeagent.yml'
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: codeagent-legacy-release-mirror
+  cancel-in-progress: false
+
+jobs:
+  mirror:
+    if: github.repository == 'CraftyTeam/codeagent-updates'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Download and verify the official signed stable release
+        id: verify
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location --retry 3 --max-time 60 https://code.codeagent.ro/codeagent.json -o codeagent.json
+          curl --fail --silent --show-error --location --retry 3 --max-time 60 https://code.codeagent.ro/codeagent.zip -o codeagent.zip
+          curl --fail --silent --show-error --location --retry 3 --max-time 60 https://code.codeagent.ro/codeagent.sig -o codeagent.sig
+          version="$(jq -er '.version' codeagent.json)"
+          [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo 'Invalid version'; exit 1; }
+          digest="$(jq -er '.sha256' codeagent.json)"
+          [[ "$digest" =~ ^[a-f0-9]{64}$ ]] || { echo 'Invalid SHA-256'; exit 1; }
+          jq -e --arg v "$version" --arg d "$digest"             '.plugin == "codeagent/codeagent.php" and .channel == "stable" and .version == $v and .sha256 == $d and .package == ("https://mcp.codeagent.ro/releases/v" + $v + "/codeagent.zip")' codeagent.json >/dev/null
+          printf '%s  %s\n' "$digest" codeagent.zip | sha256sum --check --status
+          unzip -p codeagent.zip codeagent/includes/updates/codeagent-update-public.pem > update-public.pem
+          printf '%s  %s\n' 'a81ef9833e0b522c6f867df27e17471945cd811b688b98ea482dc971a57a8ab9' update-public.pem | sha256sum --check --status
+          base64 --decode codeagent.sig > update.sig
+          openssl dgst -sha256 -verify update-public.pem -signature update.sig codeagent.json
+          unzip -p codeagent.zip codeagent/codeagent.php | grep -Fx "Version: $version"
+          printf 'version=%s\n' "$version" >> "$GITHUB_OUTPUT"
+
+      - name: Publish only if the legacy GitHub release is not already identical
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          version="${{ steps.verify.outputs.version }}"
+          repository="$GITHUB_REPOSITORY"
+          if gh api "repos/$repository/releases/tags/v$version" > existing.json 2>/dev/null; then
+            for file in codeagent.zip codeagent.json codeagent.sig; do
+              expected="sha256:$(sha256sum "$file" | awk '{print $1}')"
+              jq -e --arg name "$file" --arg digest "$expected"                 '[.assets[] | select(.name == $name and .digest == $digest and .state == "uploaded")] | length == 1' existing.json >/dev/null                 || { echo "::error::Existing GitHub release v$version has invalid $file; refusing to overwrite"; exit 1; }
+            done
+            jq -e '.draft == false and .prerelease == false' existing.json >/dev/null
+            echo "GitHub v$version already matches the signed official assets."
+            exit 0
+          fi
+          latest="$(gh api "repos/$repository/releases/latest" --jq '.tag_name' 2>/dev/null || true)"
+          if [[ "$latest" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            newest="$(printf '%s\n%s\n' "${latest#v}" "$version" | sort -V | tail -1)"
+            [[ "$newest" == "$version" ]] || { echo "::error::Refusing downgrade from $latest to v$version"; exit 1; }
+          fi
+          gh release create "v$version" codeagent.zip codeagent.json codeagent.sig             --repo "$repository" --target main             --title "CodeAgent $version"             --notes "Automated legacy WordPress updater mirror of the official signed CodeAgent $version stable distribution. Release manifest, checksum, signing key and signature verified before publishing."
+
+      - name: Verify the GitHub latest release and every asset digest
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          version="${{ steps.verify.outputs.version }}"
+          gh api "repos/$GITHUB_REPOSITORY/releases/latest" > latest.json
+          jq -e --arg v "v$version" '.tag_name == $v and .draft == false and .prerelease == false' latest.json >/dev/null             || { echo "::error::GitHub latest does not point to v$version"; exit 1; }
+          for file in codeagent.zip codeagent.json codeagent.sig; do
+            expected="sha256:$(sha256sum "$file" | awk '{print $1}')"
+            jq -e --arg name "$file" --arg digest "$expected"               '[.assets[] | select(.name == $name and .digest == $digest and .state == "uploaded")] | length == 1' latest.json >/dev/null               || { echo "::error::GitHub latest v$version has invalid $file"; exit 1; }
+          done
+          echo "Legacy GitHub latest v$version is fully synchronized with the official signed VPS release."
